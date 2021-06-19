@@ -1,0 +1,55 @@
+.form_space {
+    margin-top: 12%;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+ #pills {
+     margin-left: 32%;
+ }
+
+ .form1 {
+     margin-top: 6%;
+ }
+
+ #fname {
+    font-size: 2rem;
+ }
+
+ #radios {
+     display: inline-block;
+     margin-right: 2%;
+     margin-top: 2%;
+     margin-bottom: 2%;
+     font-size: 2rem;
+ }
+
+ #cont {
+     margin-right: 4%;
+     font-size: 2rem;
+ }
+
+ #btn {
+     display: block;
+     width: 100%;
+     font-size: 3rem;
+ }
+
+ #startd {
+     font-size: 2rem;
+     margin-bottom: 4%;
+ }
+
+ #inputd {
+     width: 100%;
+ }
+
+ #des {
+     margin-top: 2%;
+     font-size: 2rem;
+ }
+
+ #pass {
+    margin-top: 2%;
+    font-size: 2rem;
+    margin-bottom: 4%;
+ }
