@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-
+<?php require 'process.php'?>
 <div class="form_space">
 
 <ul class="nav nav-pills" id="pills">
@@ -20,36 +20,42 @@
   
 <div class="tab-content">
   <div id="employee" class="tab-pane fade in active">
-    <form class="form1">
+    <form action='' method='POST' class="form1">
+
       <div class="mb-3" id="fname">
         <label class="form-label">Full Name:</label>
-        <input type="text" class="form-control">
+        <input type="text" name='fullname' class="form-control">
       </div>
+
       <div class="mb-3" id="des">
         <label class="form-label">Designation:</label>
-        <input type="text" class="form-control">
+        <input type="text" name='designation' class="form-control">
       </div>
+
       <label class="form-label" id="cont">Contract Type:</label>
+
       <div class="form-check" id="radios">
         <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="flexRadioDefault">
+          <input class="form-check-input" name='fulltime' value='fulltime' type="radio" name="flexRadioDefault">
             Full-Time
         </label>
       </div>
+
       <div class="form-check" id="radios">
         <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="flexRadioDefault">
+          <input class="form-check-input" name='parttime' value='parttime' type="radio" name="flexRadioDefault">
             Part-Time
         </label>
       </div>
 
       <div class="form-check" id="startd">
         <label>Start date:</label>
-        <input type="date" id="inputd">
+        <input type="date" name='date' id="inputd">
       </div>
 
 
-      <button type="submit" id="btn" class="btn btn-primary">Submit</button>
+      <button type="submit" name='submit' value='Submit' id="btn" class="btn btn-primary">Submit</button>
+
     </form>
   </div>
 
