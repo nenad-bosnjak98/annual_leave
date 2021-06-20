@@ -3,13 +3,15 @@
         "full_name": "John Johnson",
         "designation": "Front-end",
         "contract_type": "Full-Time",
-        "start_date": "2019-07-23"
+        "start_date": "2019-07-23",
+        "days_remaining": 6
     },
     {
         "full_name": "Mary Boston",
         "designation": "Back-end",
         "contract_type": "Part-Time",
-        "start_date": "2020-04-21"
+        "start_date": "2020-04-21",
+        "days_remaining": 5
     },
     {
         "full_name": "John Smith",
@@ -21,7 +23,8 @@
         "full_name": "Susan Boyle",
         "designation": "Marketing",
         "contract_type": "Full-Time",
-        "start_date": "2018-12-23"
+        "start_date": "2018-12-23",
+        "days_remaining": 10
     },
     {
         "full_name": "Lary Mason",

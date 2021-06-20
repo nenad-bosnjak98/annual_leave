@@ -31,29 +31,18 @@
         <label class="form-label">Designation:</label>
         <input type="text" name='designation' class="form-control">
       </div>
-
-      <label class="form-label" id="cont">Contract Type:</label>
-
-      <div class="form-check" id="radios">
-        <label class="form-check-label">
-          <input class="form-check-input" name='fulltime' value='fulltime' type="radio" name="flexRadioDefault">
-            Full-Time
-        </label>
-      </div>
-
-      <div class="form-check" id="radios">
-        <label class="form-check-label">
-          <input class="form-check-input" name='parttime' value='parttime' type="radio" name="flexRadioDefault">
-            Part-Time
-        </label>
-      </div>
-
-      <div class="form-check" id="startd">
+      
+  <div class="form-inline">
+      <div class="form-group" id="startd">
         <label>Start date:</label>
-        <input type="date" name='date' id="inputd">
+        <input type="date" name='sdate' id="inputd">
       </div>
 
-
+      <div class="form-group" id="enddate">
+        <label>End date:</label>
+        <input type="date" name='edate' id='inpute'>
+      </div>
+</div>
       <button type="submit" name='submit' value='Submit' id="btn" class="btn btn-primary">Submit</button>
 
     </form>
