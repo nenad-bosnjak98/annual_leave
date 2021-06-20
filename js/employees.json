@@ -9,14 +9,14 @@
     {
         "full_name": "Mary Boston",
         "designation": "Back-end",
-        "contract_type": "Part-Time",
+        "contract_type": "Full-Time",
         "start_date": "2020-04-21",
         "days_remaining": 5
     },
     {
         "full_name": "John Smith",
         "designation": "Front-end",
-        "contract_type": "Full-Time",
+        "contract_type": "Part-Time",
         "start_date": "2020-08-15"
     },
     {
@@ -31,5 +31,11 @@
         "designation": "Back-end",
         "contract_type": "Full-Time",
         "start_date": "2021-02-20"
+    },
+    {
+        "full_name": "Benjamin Button",
+        "designation": "Back-end",
+        "contract_type": "Part-Time",
+        "start_date": "2020-01-20"
     }
 ]

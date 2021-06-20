@@ -1,5 +1,5 @@
 .form_space {
-    margin-top: 12%;
+    margin-top: 2%;
     margin-left: 32%;
     margin-right: 32%;
 }
@@ -11,6 +11,12 @@
 
  .form1 {
      margin-top: 6%;
+ }
+
+ .optext {
+     text-align: center;
+     margin-top: 10%;
+     font-size: 3vw;
  }
 
  #fname {

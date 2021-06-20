@@ -11,6 +11,7 @@
 </head>
 <body>
 <?php require 'process.php'?>
+<div class='optext'>Annual Leave Form</div>
 <div class="form_space">
 
 <ul class="nav nav-pills" id="pills">
@@ -31,7 +32,7 @@
         <label class="form-label">Designation:</label>
         <input type="text" name='designation' class="form-control">
       </div>
-      
+
   <div class="form-inline">
       <div class="form-group" id="startd">
         <label>Start date:</label>
