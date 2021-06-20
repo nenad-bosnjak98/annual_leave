@@ -47,18 +47,19 @@
       <button type="submit" name='submit' value='Submit' id="btn" class="btn btn-primary">Submit</button>
 
     </form>
+
   </div>
 
-
+<?php require 'admin_process.php' ?>
     <div id="admin" class="tab-pane fade">
-    <form class="form1">
+    <form action='' method='POST' class="form1">
       <div class="mb-3" id="fname">
         <label class="form-label">Username:</label>
-        <input type="text" class="form-control">
+        <input type="text" name="username" class="form-control">
       </div>
       <div class="mb-3" id="pass">
         <label class="form-label">Password:</label>
-        <input type="password" class="form-control">
+        <input type="password" name="password" class="form-control">
       </div>
 
       <button type="submit" id="btn" class="btn btn-primary">Submit</button>
