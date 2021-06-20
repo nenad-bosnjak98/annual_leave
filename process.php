@@ -67,36 +67,51 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
 
 
                     // Calculating days without weekends from start date to 30.6
+                    
                     $date1 = new DateTime($_POST['sdate']);
                     $date2 = new DateTime($june);
-                    $interval = $date1->diff($date2);
+
+                    $date1u = $date1->format('Y-m-d H:i:s');
+                    $date2u = $date2->format('Y-m-d H:i:s');
                     $dayswithoutweekends = 0;
+                    if(strtotime($date1u) < strtotime($date2u)) {
+                        $interval = $date1->diff($date2);
 
-                    for($i=0; $i<=$interval->d; $i++){
-                        $weekday = $date1->format('w');
-                        $date1->modify('+1 day');
+                        for($i=0; $i<=$interval->d; $i++){
+                            $weekday = $date1->format('w');
+                            $date1->modify('+1 day');
                     
-                        if($weekday !== "0" && $weekday !== "6"){
-                            $dayswithoutweekends++;  
+                            if($weekday !== "0" && $weekday !== "6"){
+                                $dayswithoutweekends++;  
+                            }
+                    
                         }
-                    
-                    }
+                }
 
-
-
-
+                    $days_remaining = $emp['days_remaining'];
                     // Conditions for calculating the annual leave allowed days
                     if($days > 365) {
-                        if($dayswithoutweekends < $emp['days_remaining']) {
+                        if(strtotime($date1u) > strtotime($date2u)){
+                            $days_remaining = 0;
+                            $formula = 20;
+                        }
+                        else if($dayswithoutweekends < $days_remaining) {
                             $formula = 20 + $dayswithoutweekends;
+                            $days_remaining = $dayswithoutweekends;
                         }
-                        else {
-                            $formula = 20 + $emp['days_remaining'];
+                        else if ($dayswithoutweekends >= $days_remaining) {
+                            $formula = 20 + $days_remaining;
                         }
-                        $array = array("full_name"=>$emp['full_name'], "designation"=>$emp['designation'], "contract_type"=>$emp['contract_type'],
-                    "start_date"=>$emp['start_date'], "days_remaining_last_year"=>$emp['days_remaining'], "days_remaining_this_year"=> 20, "total days"=> $formula,
-                    "start_annual"=>$_POST['sdate'], "end_annual"=>$_POST['edate']);
+
+
                         if(file_exists('js/pending.json')) {
+                            $file = file_get_contents('js/pending.json');
+                            $array = json_decode($file, true);
+
+                            $array[] = array("full_name"=>$emp['full_name'], "designation"=>$emp['designation'], "contract_type"=>$emp['contract_type'],
+                    "start_date"=>$emp['start_date'], "days_remaining_last_year"=>$days_remaining, "days_remaining_this_year"=> 20, "total days"=> $formula,
+                    "start_annual"=>$_POST['sdate'], "end_annual"=>$_POST['edate']);
+
                             $final = json_encode($array, JSON_PRETTY_PRINT);
                             if(file_put_contents('js/pending.json', $final)) {
                                 $message = "<label class='text-success' style='display:flex; justify-content: center; font-size:4rem;'>Form Data Submitted </label>";
@@ -110,9 +125,19 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
                         else {
                             $formula = $dayslastyear + $daysthisyear;
                         }
-                        $array = array("full_name"=>$emp['full_name'], "designation"=>$emp['designation'], "contract_type"=>$emp['contract_type'],
-                    "start_date"=>$emp['start_date'], "days_remaining_last_year"=>$dayslastyear, "days_remaining_this_year"=> $daysthisyear,
-                     "total days"=> $formula,$_POST['sdate'], $_POST['edate']);
+                        if(file_exists('js/pending.json')) {
+                            $file = file_get_contents('js/pending.json');
+                            $array = json_decode($file, true);
+
+                            $array[] = array("full_name"=>$emp['full_name'], "designation"=>$emp['designation'], "contract_type"=>$emp['contract_type'],
+                    "start_date"=>$emp['start_date'], "days_remaining_last_year"=>$dayslastyear, "days_remaining_this_year"=> 20, "total days"=> $formula,
+                    "start_annual"=>$_POST['sdate'], "end_annual"=>$_POST['edate']);
+
+                            $final = json_encode($array, JSON_PRETTY_PRINT);
+                            if(file_put_contents('js/pending.json', $final)) {
+                                $message = "<label class='text-success' style='display:flex; justify-content: center; font-size:4rem;'>Form Data Submitted </label>";
+                            }
+                        }
                     }
 
 
@@ -123,11 +148,7 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
         }
     }
 
-
-
-
-
-
+    
     if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sdate']) && isset($_POST['edate'])) {
         foreach($emparray as $emp) {
             if($emp['contract_type'] == "Part-Time") {
@@ -208,21 +229,4 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
             }
         }
     }
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
 ?>

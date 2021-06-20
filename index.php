@@ -51,7 +51,7 @@
     </form>
 
   </div>
-
+<div id="messages">
   <?php
 if(isset($error)) {
   echo $error;
@@ -59,8 +59,9 @@ if(isset($error)) {
 if(isset($message)) {
   echo $message;
 }
-?>
 
+?>
+</div>
 <?php require 'admin_process.php' ?>
     <div id="admin" class="tab-pane fade">
     <form action='' method='POST' class="form1">
@@ -86,6 +87,13 @@ if(isset($message)) {
 
 
 </div>
+<script>
 
+function hideMessage() {
+    document.getElementById("messages").style.display = "none";
+};
+setTimeout(hideMessage, 2000);
+
+</script>
 </body>
 </html>
