@@ -10,7 +10,9 @@
   <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+
 <?php require 'process.php'?>
+
 <div class='optext'>Annual Leave Form</div>
 <div class="form_space">
 
@@ -49,6 +51,15 @@
     </form>
 
   </div>
+
+  <?php
+if(isset($error)) {
+  echo $error;
+}
+if(isset($message)) {
+  echo $message;
+}
+?>
 
 <?php require 'admin_process.php' ?>
     <div id="admin" class="tab-pane fade">
