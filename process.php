@@ -26,28 +26,59 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
                     $lastyear = $dateobj1->diff($endOfYear);
                     $monthslastyear = round($lastyear->y*12 + $lastyear->m + $lastyear->d / 30);
 
-                    echo $monthslastyear;
-                    echo '<br>';
+                    
 
                     $thisyear = $beginningOfYear->diff($date);
                     $monthsthisyear = round($thisyear->y*12 + $thisyear->m + $thisyear->d / 30);
 
-                    echo $monthsthisyear;
-                    echo '<br>';
 
                     // Remaining days last year
                     $dayslastyear = 20/12 * $monthslastyear;
+                    $daysthisyear = 20/12 * $monthsthisyear;
 
+                    echo $dayslastyear;
+                    echo '<br>';
+                    echo $daysthisyear;
+                    echo '<br>';
+
+
+                    // Calculating days without weekends from start date to 30.6
+                    $date1 = new DateTime($_POST['sdate']);
+                    $date2 = new DateTime($june);
+                    $interval = $date1->diff($date2);
+                    $dayswithoutweekends = 0;
+
+                    for($i=0; $i<=$interval->d; $i++){
+                        $weekday = $date1->format('w');
+                        $date1->modify('+1 day');
+                    
+                        if($weekday !== "0" && $weekday !== "6"){
+                            $dayswithoutweekends++;  
+                        }
+                    
+                    }
+
+                    echo $dayswithoutweekends;
+                    echo "<br>";
 
 
 
                     // Conditions for calculating the annual leave allowed days
                     if($days > 365) {
-                        $formula = 20 + $dayswithoutweekends;
+                        if($dayswithoutweekends < $emp['days_remaining']) {
+                            $formula = 20 + $dayswithoutweekends;
+                        }
+                        else {
+                            $formula = 20 + $emp['days_remaining'];
+                        }
                     }
                     else {
-                        
-                        $formula = round(20/12 * $months);
+                        if($dayswithoutweekends < $dayslastyear) {
+                            $formula = $daysthisyear + $dayswithoutweekends;
+                        }
+                        else {
+                            $formula = $dayslastyear + $daysthisyear;
+                        }
                     }
 
                     echo $formula;
