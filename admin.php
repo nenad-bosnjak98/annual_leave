@@ -9,10 +9,13 @@
 </head>
 <body>
 <div class='jsontxt' id="files">
-<?php 
+
+<?php
+require 'accept.php';
 $pending = file_get_contents('js/pending.json');
 $penarray = json_decode($pending, true);
 $i = 0;
+
 foreach($penarray as $key => $value) {
 
     
