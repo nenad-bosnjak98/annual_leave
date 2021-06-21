@@ -51,6 +51,7 @@
     </form>
 
   </div>
+  <?php require 'admin_process.php' ?>
 <div id="messages">
   <?php
 if(isset($error)) {
@@ -59,10 +60,13 @@ if(isset($error)) {
 if(isset($message)) {
   echo $message;
 }
+if(isset($error_admin)) {
+  echo $error_admin;
+}
+
 
 ?>
 </div>
-<?php require 'admin_process.php' ?>
     <div id="admin" class="tab-pane fade">
     <form action='' method='POST' class="form1">
       <div class="mb-3" id="fname">
@@ -82,14 +86,6 @@ if(isset($message)) {
   <a type="submit" href='approvals.php'  id='firstb'>Approvals</a>
   <a type="submit" href='refusals.php' id='secondb'>Refusals</a>
   </div>
-
-  <?php
-if(isset($error_admin)) {
-  echo $error_admin;
-}
-
-?>
-
 
 
 

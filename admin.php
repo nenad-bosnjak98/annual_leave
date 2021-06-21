@@ -16,6 +16,11 @@ $pending = file_get_contents('js/pending.json');
 $penarray = json_decode($pending, true);
 $i = 0;
 
+if(empty($penarray)) {
+    echo '<h2>There are no pending requests yet!</h2>';
+}
+else {
+
 foreach($penarray as $key => $value) {
 
     
@@ -38,7 +43,9 @@ foreach($penarray as $key => $value) {
     echo '<br>';
     $i++;
 }
+}
 ?>
   </div>
+  
 </body>
 </html>

@@ -3,16 +3,16 @@
 
 if(isset($_POST['submit'])) {
     if(empty($_POST['fullname'])) {
-        $error = "<label class='text-danger'>You didn't fill the full name field!</label>";
+        $error = "<label class='text-danger' style='display:flex; justify-content: center; font-size:4rem;'>You didn't fill the full name field!</label>";
     }
     if(empty($_POST['designation'])) {
-        $error = "<label class='text-danger'>You didn't fill the designation field!</label>";
+        $error = "<label class='text-danger' style='display:flex; justify-content: center; font-size:4rem;'>You didn't fill the designation field!</label>";
     }
     if(empty($_POST['sdate'])) {
-        $error = "<label class='text-danger'>You didn't fill the start date field!</label>";
+        $error = "<label class='text-danger' style='display:flex; justify-content: center; font-size:4rem;'>You didn't fill the start date field!</label>";
     }
     if(empty($_POST['edate'])) {
-        $error = "<label class='text-danger'>You didn't fill the end date field!</label>";
+        $error = "<label class='text-danger' style='display:flex; justify-content: center; font-size:4rem;'>You didn't fill the end date field!</label>";
     }
 }
 
@@ -24,8 +24,36 @@ $beginningOfYear = new DateTime('first day of January this year');
 $date = new DateTime('now');
 $june = date('Y-06-30');
 
-if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sdate']) && isset($_POST['edate'])) {
+
+@$date_for_start = new DateTime($_POST['sdate']);
+@$date_for_end = new DateTime($_POST['edate']);
+$datefors = $date_for_start->format('Y-m-d H:i:s');
+$datefore = $date_for_end->format('Y-m-d H:i:s');
+
+if(strtotime($datefors) > strtotime($datefore)) {
+    $error = "<label class='text-danger' style='display:flex; justify-content: center; font-size:4rem;'>You didn't pick the correct dates!</label>";
+}
+
+
+
+$pend = file_get_contents('js/pending.json');
+        $pendarray = json_decode($pend, true);
+
+if(!empty($pendarray)) {
+    foreach($pendarray as $p) {
+        if($p['designation'] == $_POST['designation']) {
+            $error = "<label class='text-danger' style='display:flex; justify-content: center; font-size:4rem;'>You can't apply for annual leave!</label>";
+        }
+    }
+}
+
+
+if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sdate']) && isset($_POST['edate']) && !isset($error) && strtotime($datefors) < strtotime($datefore)) {
+
         foreach($emparray as $emp) {
+
+            
+
             if($emp['contract_type'] == "Full-Time") {
                 if($emp['full_name'] == $_POST['fullname'] && $emp['designation'] == $_POST['designation']) {
                     
@@ -47,7 +75,6 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
                         $monthslastyear = 0;
                         $thisyear = $date->diff($dateobj);
                         $day = $thisyear->days;
-                        echo $day;
                         $monthsthisyear = round($thisyear->days / 30);
                     }
                     else if (date('Y', $date_n) ==  date("Y", $date_o)){
@@ -160,10 +187,10 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
                 }
             }
         }
-    }
+}
 
     
-    if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sdate']) && isset($_POST['edate'])) {
+    if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sdate']) && isset($_POST['edate']) && !isset($error) && strtotime($datefors) < strtotime($datefore)) {
         foreach($emparray as $emp) {
             if($emp['contract_type'] == "Part-Time") {
                 if($emp['full_name'] == $_POST['fullname'] && $emp['designation'] == $_POST['designation']) {
