@@ -43,5 +43,12 @@
         "designation": "Back-end",
         "contract_type": "Part-Time",
         "start_date": "2020-01-20"
+    }, 
+    {
+        "id": 5,
+        "full_name": "Bob Jackob",
+        "designation": "Back-end",
+        "contract_type": "Full-Time",
+        "start_date": "2021-03-22"
     }
 ]

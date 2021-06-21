@@ -27,10 +27,13 @@ foreach($penarray as $key => $value) {
         }
     }
 
-
+    $accept= "accept";
+    $refuse= "refuse";
     echo '<br>';
-    echo '<a id="button1" href="admin.php?id='.$penarray[$i]["id"].'">Accept</a>';
-    echo "<a id='button2'>Decline</a>";
+    echo '<div id="btn12">';
+    echo '<a id="button1" name="accept" href="admin.php?id='.$penarray[$i]["id"].'&action='.$accept.'">Accept</a>';
+    echo '<a id="button2" name="refuse" href="admin.php?id='.$penarray[$i]["id"].'&action='.$refuse.'">Decline</a>';
+    echo '</div>';
     echo '<br>';
     echo '<br>';
     $i++;

@@ -34,7 +34,6 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
                     $dateobj = new DateTime($emp['start_date']);
                     $realdate = $date->diff($dateobj);
                     $days = $realdate->days;
-
                     
                     // Calculating ammount of months last year and this year
                     $date_d = date($emp['start_date']);
@@ -43,14 +42,19 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
                     $date_o = strtotime($oneyearless);
 
                     if(date('Y', $date_n) == date("Y")) {
+                        $dateobj = new DateTime($emp['start_date']);
+                        $date = new DateTime('now');
                         $monthslastyear = 0;
-                        $thisyear = $dateobj->diff($date);
-                        $monthsthisyear = round($thisyear->y*12 + $thisyear->m + $thisyear->d / 30);
+                        $thisyear = $date->diff($dateobj);
+                        $day = $thisyear->days;
+                        echo $day;
+                        $monthsthisyear = round($thisyear->days / 30);
                     }
                     else if (date('Y', $date_n) ==  date("Y", $date_o)){
 
 
                         $dateobj1 = new DateTime($emp['start_date']);
+                        $date = new DateTime('now');
                         $lastyear = $dateobj1->diff($endOfYear);
                         $monthslastyear = round($lastyear->y*12 + $lastyear->m + $lastyear->d / 30);
 
@@ -58,6 +62,7 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
                         $monthsthisyear = round($thisyear->y*12 + $thisyear->m + $thisyear->d / 30);
                     }
                     else {
+                        $date = new DateTime('now');
                         $monthslastyear = 12;
                         $thisyear = $beginningOfYear->diff($date);
                         $monthsthisyear = round($thisyear->y*12 + $thisyear->m + $thisyear->d / 30);
@@ -89,10 +94,9 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
                     
                         }
                 }
-
-                    $days_remaining = $emp['days_remaining'];
                     // Conditions for calculating the annual leave allowed days
                     if($days > 365) {
+                        $days_remaining = $emp['days_remaining'];
                         if(strtotime($date1u) > strtotime($date2u)){
                             $days_remaining = 0;
                             $formula = 20;
@@ -122,24 +126,25 @@ if(isset($_POST['fullname']) && isset($_POST['designation']) && isset($_POST['sd
                     }
                     
                     else {
+                        $days_remain =$daysthisyear;
                         if(strtotime($date1u) > strtotime($date2u)){
-                            $days_remaining = 0;
+                            $days_remain = 0;
                             $formula = $daysthisyear;
                         }
                         else if($dayswithoutweekends < $dayslastyear) {
                             $formula = $daysthisyear + $dayswithoutweekends;
-                            $days_remaining = $dayswithoutweekends;
+                            $days_remain = $dayswithoutweekends;
                         }
                         else if($dayswithoutweekends >= $dayslastyear){
                             $formula = $dayslastyear + $daysthisyear;
-                            $days_remaining = $dayslastyear;
+                            $days_remain = $dayslastyear;
                         }
                         if(file_exists('js/pending.json')) {
                             $file = file_get_contents('js/pending.json');
                             $array = json_decode($file, true);
 
                             $array[] = array("id"=>$emp['id'],"full_name"=>$emp['full_name'], "designation"=>$emp['designation'], "contract_type"=>$emp['contract_type'],
-                    "start_date"=>$emp['start_date'], "days_remaining_last_year"=>$days_remaining, "days_remaining_this_year"=> $daysthisyear, "total days"=> $formula,
+                    "start_date"=>$emp['start_date'], "days_remaining_last_year"=>$days_remain, "days_remaining_this_year"=> $daysthisyear, "total days"=> $formula,
                     "start_annual"=>$_POST['sdate'], "end_annual"=>$_POST['edate']);
 
                             $final = json_encode($array, JSON_PRETTY_PRINT);

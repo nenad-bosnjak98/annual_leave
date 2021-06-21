@@ -78,6 +78,10 @@ if(isset($message)) {
     </form>
     </div>
   </div>
+  <div id='twobuttons'>
+  <a type="submit" href='approvals.php'  id='firstb'>Approvals</a>
+  <a type="submit" href='refusals.php' id='secondb'>Refusals</a>
+  </div>
 
   <?php
 if(isset($error_admin)) {
