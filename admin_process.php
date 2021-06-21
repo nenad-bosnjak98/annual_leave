@@ -8,6 +8,9 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
         if($ad['username'] == $_POST['username'] && $ad['password'] == $_POST['password']){
             header("location: admin.php"); 
         }
+        else {
+            $error_admin = "<label class='text-danger'>You didn't enter the correct credentials or you didn't fill all fields!</label>";
+        }
     }
 }
 

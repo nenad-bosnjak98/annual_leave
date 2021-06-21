@@ -74,12 +74,17 @@ if(isset($message)) {
         <input type="password" name="password" class="form-control">
       </div>
 
-      <button type="submit" id="btn" class="btn btn-primary">Submit</button>
+      <button type="submit" id="btn" name="submita" class="btn btn-primary">Submit</button>
     </form>
     </div>
   </div>
 
+  <?php
+if(isset($error_admin)) {
+  echo $error_admin;
+}
 
+?>
 
 
 

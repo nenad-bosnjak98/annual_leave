@@ -2,3 +2,15 @@
     text-align: center;
     font-size: 1.5rem;
 }
+
+#button1 {
+    margin-left: 1%;
+    background-color: #4CAF50;
+    padding: 15px 22px;
+}
+
+#button2 {
+    margin-left: 1%;
+    background-color: #f44336;
+    padding: 15px 22px;
+}

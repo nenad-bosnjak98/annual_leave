@@ -8,11 +8,14 @@
     <title>Pending Requests</title>
 </head>
 <body>
-<div class='jsontxt'>
+<div class='jsontxt' id="files">
 <?php 
 $pending = file_get_contents('js/pending.json');
 $penarray = json_decode($pending, true);
+$i = 0;
 foreach($penarray as $key => $value) {
+
+    
     if (!is_array($value)) {
         echo $key . '=>' . $value . '<br/>';
     } else {
@@ -23,12 +26,13 @@ foreach($penarray as $key => $value) {
 
 
     echo '<br>';
-    echo "<button type='submit'>Accept</button>";
-    echo "<button type='submit'>Decline</button>";
+    echo '<a id="button1" href="admin.php?id='.$penarray[$i]["id"].'">Accept</a>';
+    echo "<a id='button2'>Decline</a>";
     echo '<br>';
     echo '<br>';
+    $i++;
 }
 ?>
-  </div>  
+  </div>
 </body>
 </html>

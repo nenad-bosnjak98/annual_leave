@@ -1,5 +1,18 @@
 [
     {
+        "id": 2,
+        "full_name": "Susan Boyle",
+        "designation": "Marketing",
+        "contract_type": "Full-Time",
+        "start_date": "2018-12-23",
+        "days_remaining_last_year": 0,
+        "days_remaining_this_year": 20,
+        "total days": 20,
+        "start_annual": "2021-07-01",
+        "end_annual": "2021-07-08"
+    },
+    {
+        "id": 1,
         "full_name": "John Johnson",
         "designation": "Front-end",
         "contract_type": "Full-Time",
@@ -7,29 +20,19 @@
         "days_remaining_last_year": 0,
         "days_remaining_this_year": 20,
         "total days": 20,
-        "start_annual": "2021-07-09",
-        "end_annual": "2021-07-14"
+        "start_annual": "2021-07-05",
+        "end_annual": "2021-07-13"
     },
     {
-        "full_name": "John Johnson",
+        "id": 24,
+        "full_name": "John Smith",
         "designation": "Front-end",
-        "contract_type": "Full-Time",
-        "start_date": "2019-07-23",
-        "days_remaining_last_year": 6,
-        "days_remaining_this_year": 20,
-        "total days": 26,
-        "start_annual": "2021-06-21",
-        "end_annual": "2021-07-07"
-    },
-    {
-        "full_name": "John Johnson",
-        "designation": "Front-end",
-        "contract_type": "Full-Time",
-        "start_date": "2019-07-23",
-        "days_remaining_last_year": 5,
-        "days_remaining_this_year": 20,
-        "total days": 25,
-        "start_annual": "2021-06-24",
-        "end_annual": "2021-06-29"
+        "contract_type": "Part-Time",
+        "start_date": "2020-08-15",
+        "days_remaining_last_year": 7,
+        "days_remaining_this_year": 10,
+        "total days": 17,
+        "start_annual": "2021-06-22",
+        "end_annual": "2021-07-06"
     }
 ]
